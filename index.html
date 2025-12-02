@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Calcify - A modern, accessible calculator web application"
+    />
+    <title>Calcify - Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Welcome Screen -->
+      <div
+        class="welcome-screen"
+        id="welcomeScreen"
+        role="status"
+        aria-label="Welcome screen"
+      >
+        <div class="welcome-content">
+          <svg
+            class="logo"
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <!-- Calculator icon -->
+            <rect
+              x="15"
+              y="15"
+              width="70"
+              height="70"
+              rx="8"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <line
+              x1="15"
+              y1="35"
+              x2="85"
+              y2="35"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <line
+              x1="35"
+              y1="15"
+              x2="35"
+              y2="85"
+              stroke="currentColor"
+              stroke-width="1"
+              opacity="0.5"
+            />
+            <line
+              x1="55"
+              y1="15"
+              x2="55"
+              y2="85"
+              stroke="currentColor"
+              stroke-width="1"
+              opacity="0.5"
+            />
+            <circle cx="27" cy="50" r="3" fill="currentColor" />
+            <circle cx="27" cy="68" r="3" fill="currentColor" />
+            <circle cx="47" cy="50" r="3" fill="currentColor" />
+            <circle cx="47" cy="68" r="3" fill="currentColor" />
+            <circle cx="67" cy="50" r="3" fill="currentColor" />
+            <circle cx="67" cy="68" r="3" fill="currentColor" />
+          </svg>
+          <h1 class="app-name">Calcify</h1>
+        </div>
+      </div>
+
+      <!-- Calculator Workspace -->
+      <div class="calculator-workspace" id="workspace">
+        <!-- Display -->
+        <div class="display-area">
+          <div
+            class="expression-display"
+            id="expressionDisplay"
+            aria-label="Expression display"
+            aria-live="polite"
+          >
+            0
+          </div>
+          <div
+            class="result-display"
+            id="resultDisplay"
+            aria-label="Result display"
+            aria-live="assertive"
+            role="status"
+          >
+            0
+          </div>
+        </div>
+
+        <!-- History Toggle Button -->
+        <button
+          class="history-toggle"
+          id="historyToggle"
+          aria-label="Toggle history panel"
+          aria-expanded="false"
+          aria-controls="historyPanel"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5.67-1.5 1.5-1.5 1.5.67 1.5 1.5zm-7 0c0 .83-.67 1.5-1.5 1.5S5 11.83 5 11s.67-1.5 1.5-1.5 1.5.67 1.5 1.5z"
+            />
+          </svg>
+        </button>
+
+        <!-- History Panel -->
+        <div
+          class="history-panel"
+          id="historyPanel"
+          role="region"
+          aria-label="Calculation history"
+        >
+          <div class="history-header">
+            <h2>History</h2>
+          </div>
+          <ul class="history-list" id="historyList" role="list">
+            <!-- History items will be populated here -->
+          </ul>
+        </div>
+
+        <!-- Calculator Keyboard -->
+        <div class="keyboard">
+          <div class="key-row">
+            <button
+              class="key key-function"
+              data-action="clear"
+              aria-label="Clear all"
+            >
+              C
+            </button>
+            <button
+              class="key key-function"
+              data-action="delete"
+              aria-label="Delete last character"
+            >
+              DEL
+            </button>
+            <button
+              class="key key-operator"
+              data-operator="%"
+              aria-label="Percent"
+            >
+              %
+            </button>
+            <button
+              class="key key-operator"
+              data-operator="÷"
+              aria-label="Divide"
+            >
+              ÷
+            </button>
+          </div>
+          <div class="key-row">
+            <button class="key key-digit" data-digit="7">7</button>
+            <button class="key key-digit" data-digit="8">8</button>
+            <button class="key key-digit" data-digit="9">9</button>
+            <button
+              class="key key-operator"
+              data-operator="×"
+              aria-label="Multiply"
+            >
+              ×
+            </button>
+          </div>
+          <div class="key-row">
+            <button class="key key-digit" data-digit="4">4</button>
+            <button class="key key-digit" data-digit="5">5</button>
+            <button class="key key-digit" data-digit="6">6</button>
+            <button
+              class="key key-operator"
+              data-operator="−"
+              aria-label="Subtract"
+            >
+              −
+            </button>
+          </div>
+          <div class="key-row">
+            <button class="key key-digit" data-digit="1">1</button>
+            <button class="key key-digit" data-digit="2">2</button>
+            <button class="key key-digit" data-digit="3">3</button>
+            <button class="key key-operator" data-operator="+" aria-label="Add">
+              +
+            </button>
+          </div>
+          <div class="key-row">
+            <button class="key key-digit key-zero" data-digit="0">0</button>
+            <button class="key key-decimal" data-digit=".">.</button>
+            <button class="key key-equals" aria-label="Calculate">=</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="calcify.js"></script>
+  </body>
+</html>
